@@ -6,10 +6,11 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 // sqlite3 code
-var fs = require("fs");
-var file = "test.db";
+var fs = require('fs');
+var file = 'test.db';
 var exists = fs.existsSync(file);
-var sqlite3 = require("sqlite3").verbose();
+var sqlite3 = require('sqlite3').verbose();
+var db = new sqlite3.Database(file);
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -23,12 +24,13 @@ app.set('view engine', 'jade');
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
-app.use(bodyParser.json());
+app.use(bodyParser.jsondom ());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// create table if doesn't alrady exist
+// create table if doesn't already exist
+// populate database with random guff
 db.serialize(function(){
     if(!exists){
         db.run("CREATE TABLE Stuff (thing TEXT)");
@@ -39,7 +41,7 @@ db.serialize(function(){
     //Insert random data
         var rand;
         for(var i=0; i<10; i++){
-            random = Math.floor(Math.random() * 100000000);
+            rand = Math.floor(Math.random() * 100000000);
             statement.run("Thing #" + rand);
         }
 
