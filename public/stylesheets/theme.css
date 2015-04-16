@@ -1,0 +1,168 @@
+html, body{
+    height: 100%
+}
+
+main{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    padding-bottom: 100px;
+}
+
+
+#background{
+    background-color: white;
+    height: 95%;
+}
+
+
+div.row{
+    position: center;
+    margin-right: 10%;
+    margin-left: 10%;
+}
+
+.top_row{
+    top: 200px;
+}
+
+header, footer{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    background-color: black;
+    text-align: center;
+    height: auto;
+}
+
+nav ul{
+    padding: 8px 0px;
+    margin: 0px;
+}
+
+nav ul li a{
+    color: white;
+}
+
+nav li{
+    display: inline;
+    padding: 10px;
+}
+
+footer{
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+#about{
+    background-color: white;
+}
+
+#previous_btn{
+    border: 3px solid white;
+    float: left;
+}
+
+#previous_btn:focus{
+    outline: none;
+}
+
+#previous_btn:hover{
+    border: 0;
+}
+
+#next_btn{
+    float: right;
+    border: 3px solid white;
+}
+
+#next_btn{
+    outline: none;
+}
+
+#next_btn:hover{
+    border: none;
+}
+
+
+#month_image{
+    min-width: 200px;
+    width: 40%;
+    left: 5%;
+}
+
+img.hidden{
+    display: none;
+}
+
+.produce{
+    padding-top: 5%;
+}
+
+.right_produce{
+    left: 15%;
+}
+
+.top_row{
+    padding-top: 2%;
+}
+
+.bottom_row{
+    padding-bottom: 5%;
+}
+
+#produce_display_1 img{
+    border: 3px solid white;
+}
+
+#produce_display_2 img{
+    border: 3px solid white;
+}
+
+#produce_display_3 img{
+    border: 3px solid white;
+}
+
+#produce_display_1 img:hover{
+    border: 0px;
+}
+
+#produce_display_2 img:hover{
+    border: 0px;
+}
+
+#produce_display_3 img:hover{
+    border: 0px;
+}
+
+#month_image{
+    transition: opacity 0.2s linear;
+}
+
+@media screen and (max-width: 850px){
+    #month_image{
+        display: none;
+    }
+    .right_produce{
+        left: 0;
+    }
+}
+
+@media screen and (min-width: 850px){
+    #month_name{
+        display: none;
+    }
+}
+
+#month_name{
+    font-weight: bold;
+    position: relative;
+    top: 10%;
+    left: 0;
+    width: 100%;
+    bottom: 5%;
+    text-align: center;
+}
+
+.modal-dialog {
+   margin-top: 15%;
+}
