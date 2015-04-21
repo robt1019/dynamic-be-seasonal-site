@@ -27,4 +27,27 @@ router.get('/produce_list', function(req, res){
     });
 });
 
+// Post to add produce service
+router.post('/add_produce', function(req, res){
+
+    var db = req.db;
+
+    // Get form values
+    var produceName = req.body.name;
+    var produceDescription = req.body.description;
+    var imageFile = req.body.imageFile;
+
+    // Insert into DB
+    var statement = db.prepare("INSERT INTO  produce VALUES (?, ?, ?)");
+    statement.run(produceName, produceDescription, imageFile);
+    statement.finalize();
+
+    console.log("Image file: " + imageFile);
+
+    // Return to produce list page after inserting item
+    res.location("produce_admin");
+    res.redirect("produce_admin");
+
+});
+
 module.exports = router;

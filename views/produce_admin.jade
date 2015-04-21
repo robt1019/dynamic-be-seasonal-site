@@ -6,11 +6,8 @@ body
     header
         h1 Produce Manager
 
-    form(method="post", action="http://loalhost")
-        input(type="text", name="name")
-        input(type="text", name="description")
+    form(method="post", action="/add_produce")
+        input(type="text", placeholder="name", name="name")
+        input(type="text", placeholder="description" name="description")
+        input(type="text", placeholder="image filename" name="imageFile")
         input(type="submit", value="Add Item")
-
-    footer
-        p This is the footer
-

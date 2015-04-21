@@ -21,38 +21,32 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// make produce array available to router
+// make produce array and db available to router
 app.use(function(req,res, next){
     req.produceArray = produceArray;
+    req.db = db;
     next();
 });
 
-// create table if doesn't already exist
 db.serialize(function(){
+
+    // create produce table if doesn't already exist
     if(!exists){
         db.run("CREATE TABLE produce (name TEXT, description TEXT, image_url TEXT)");
     }
     
     // load existing database into produceArray
-    db.each("SELECT name, description FROM produce", function(err, row){
-        produceArray.push({ name: row.name, description: row.description });
+    db.each("SELECT name, description, image_url FROM produce", function(err, row){
+        produceArray.push({ name: row.name, description: row.description, imageFile: row.image_url });
+        console.log(produceArray);
     });
 
-    // // insert dummy data into database
-    // var statement = db.prepare("INSERT INTO  produce VALUES (?, ?, ?)");
-
-    // statement.run("Apple", "Delicious", "apple.png");
-    // statement.run("Banana", "Also Delicious", "banana.png");
-
-    // statement.finalize();
 });
 
 app.use('/', routes);
