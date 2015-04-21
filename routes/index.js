@@ -1,7 +1,8 @@
 "use strict"
 
-var express = require('express'); var router = express.Router(); 
-var produceArray = [];
+var express = require('express');
+var router = express.Router(); 
+
 // GET produce checker page. 
 router.get('/', function(req, res, next) {
     res.render('index', { title: 'Product Checker' });
@@ -19,11 +20,8 @@ router.get('/produce_admin', function(req, res, next) {
 
 // GET produce list page.
 router.get('/produce_list', function(req, res){
-    var db = req.db;
-    db.each("SELECT name, description FROM produce", function(err, row){
-        produceArray.push({ name: row.name, description: row.description });
-    });
-    console.log(produceArray);
+    var produceArray = req.produceArray;
+    console.log("produce array: " + produceArray);
     res.render('produce_list', {
         title: "Produce List",  data: produceArray
     });

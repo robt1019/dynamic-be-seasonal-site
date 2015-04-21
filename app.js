@@ -11,6 +11,7 @@ var file = 'be_seasonal.db';
 var exists = fs.existsSync(file);
 var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database(file);
+var produceArray = [];
 
 var routes = require('./routes/index');
 
@@ -28,9 +29,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// make database available to router
+// make produce array available to router
 app.use(function(req,res, next){
-    req.db = db;
+    req.produceArray = produceArray;
     next();
 });
 
@@ -40,13 +41,18 @@ db.serialize(function(){
         db.run("CREATE TABLE produce (name TEXT, description TEXT, image_url TEXT)");
     }
     
-    // insert dummy data into database
-    var statement = db.prepare("INSERT INTO  produce VALUES (?, ?, ?)");
+    // load existing database into produceArray
+    db.each("SELECT name, description FROM produce", function(err, row){
+        produceArray.push({ name: row.name, description: row.description });
+    });
 
-    statement.run("Apple", "Delicious", "apple.png");
-    statement.run("Banana", "Also Delicious", "banana.png");
+    // // insert dummy data into database
+    // var statement = db.prepare("INSERT INTO  produce VALUES (?, ?, ?)");
 
-    statement.finalize();
+    // statement.run("Apple", "Delicious", "apple.png");
+    // statement.run("Banana", "Also Delicious", "banana.png");
+
+    // statement.finalize();
 });
 
 app.use('/', routes);
