@@ -37,12 +37,10 @@ router.post('/add_produce', function(req, res){
     var produceDescription = req.body.description;
     var imageFile = req.body.imageFile;
 
-    // Insert into DB
-    var statement = db.prepare("INSERT INTO  produce VALUES (?, ?, ?)");
+    // Insert into DB safely using prepare syntax
+    var statement = db.prepare("INSERT INTO  produce(name, description, image_url) VALUES (?, ?, ?)");
     statement.run(produceName, produceDescription, imageFile);
     statement.finalize();
-
-    console.log("Image file: " + imageFile);
 
     // Return to produce list page after inserting item
     res.location("produce_admin");

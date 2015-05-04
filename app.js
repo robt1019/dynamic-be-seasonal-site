@@ -37,16 +37,16 @@ app.use(function(req,res, next){
 db.serialize(function(){
 
     // create produce table if doesn't already exist
-    if(!exists){
-        db.run("CREATE TABLE produce (name TEXT, description TEXT, image_url TEXT)");
-    }
-    
-    // load existing database into produceArray
-    db.each("SELECT name, description, image_url FROM produce", function(err, row){
-        produceArray.push({ name: row.name, description: row.description, imageFile: row.image_url });
+    db.run("pragma foreign_keys=ON")
+    db.run("CREATE TABLE IF NOT EXISTS produce (id INTEGER PRIMARY KEY NOT NULL, name TEXT, description TEXT, image_url TEXT)");
+    db.run("CREATE TABLE IF NOT EXISTS january_produce (produce_id INT PRIMARY KEY, FOREIGN KEY (produce_id) REFERENCES produce(id))");
+    db.run("CREATE UNIQUE INDEX unique_produce ON produce(name)")
+
+    // load existing database into produceArray for use in router
+    db.each("SELECT id, name, description, image_url FROM produce", function(err, row){
+        produceArray.push({ id: row.id, name: row.name, description: row.description, imageFile: row.image_url });
         console.log(produceArray);
     });
-
 });
 
 app.use('/', routes);
