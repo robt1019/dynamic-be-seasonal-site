@@ -8,12 +8,13 @@ var bodyParser = require('body-parser');
 // sqlite3 code
 var fs = require('fs');
 var file = 'be_seasonal.db';
-var exists = fs.existsSync(file);
+// var exists = fs.existsSync(file);
 var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database(file);
-var produceArray = [];
+// var produceArray = [];
 
 var routes = require('./routes/index');
+var database = require('./routes/database');
 
 var app = express();
 
@@ -29,7 +30,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // make produce array and db available to router
 app.use(function(req,res, next){
-    req.produceArray = produceArray;
+    // req.produceArray = produceArray;
     req.db = db;
     next();
 });
@@ -40,16 +41,11 @@ db.serialize(function(){
     db.run("pragma foreign_keys=ON")
     db.run("CREATE TABLE IF NOT EXISTS produce (id INTEGER PRIMARY KEY NOT NULL, name TEXT, description TEXT, image_url TEXT)");
     db.run("CREATE TABLE IF NOT EXISTS january_produce (produce_id INT PRIMARY KEY, FOREIGN KEY (produce_id) REFERENCES produce(id))");
-    db.run("CREATE UNIQUE INDEX unique_produce ON produce(name)")
-
-    // load existing database into produceArray for use in router
-    db.each("SELECT id, name, description, image_url FROM produce", function(err, row){
-        produceArray.push({ id: row.id, name: row.name, description: row.description, imageFile: row.image_url });
-        console.log(produceArray);
-    });
+    db.run("CREATE UNIQUE INDEX IF NOT EXISTS unique_produce ON produce(name)");
 });
 
 app.use('/', routes);
+app.use('/', database);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

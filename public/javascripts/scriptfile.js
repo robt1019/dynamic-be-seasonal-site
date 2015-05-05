@@ -1,5 +1,15 @@
 "use strict";
 
+// produce array for use in site
+var produce_array = [];
+
+////////////////////////////// DOM ready ///////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
+
+$(document).ready(function(){
+    populateProduceArray();
+})
+
 ///////////////////////////Produce Objects//////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -175,8 +185,26 @@ function removeClass(element, className) {
     }
 }
 
+/////////////////////////////// Functions //////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
+
+// Fill produceArray with produce data from sql database
+function populateProduceArray(){
+
+    // Empty content string
+    var tableContent = '';
+
+    $.getJSON('/produce_list', function(produce){
+
+        // For each item in our JSON, add a table row and cells to the content string
+        $.each(produce, function(){
+            produceArray.push(this);
+        });
+
+        console.log(produceArray);
+
+    });
+};
 
 function make_visible(element){
 
@@ -299,6 +327,9 @@ var description_image = document.getElementById("description_image");
 
 //Sets initial month up to display on website on load
 set_current_month();
+
+console.log("January:")
+console.log(January);
 
 
 ///////////////////////////event listeners//////////////////////////////////////

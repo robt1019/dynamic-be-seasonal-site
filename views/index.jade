@@ -1,251 +1,251 @@
-doctype html(xmlns='http://www.w3.org/1999/xhtml', lang='en-GB', xml:lang='en-GB')
-head
-    link(rel='icon', href='favicon.ico')
-    |     
-    link(href='bootstrap/css/bootstrap.min.css', rel='stylesheet')
-    | &#x9;
-    link(rel='stylesheet', type='text/css', href='stylesheets/theme.css')
-    | &#x9;
-    meta(charset='UTF-8')
-    | &#x9;
-    meta(name='viewport', content='width=device-width, initial-scale=1.0')
-    | &#x9;
-    title Bee Seasonal
-  body
-    #background.container-fluid
-      header.row
-        .col-sm-2
-          img(src='images/logo/bee2.png', height='55px')
+extends layout
+
+block content
+
+  head
+      link(rel='icon', href='favicon.ico')
+      |     
+      link(href='bootstrap/css/bootstrap.min.css', rel='stylesheet')
+      | &#x9;
+      link(rel='stylesheet', type='text/css', href='stylesheets/theme.css')
+      | &#x9;
+      meta(charset='UTF-8')
+      | &#x9;
+      meta(name='viewport', content='width=device-width, initial-scale=1.0')
+      | &#x9;
+      title Bee Seasonal
+    body
+      #background.container-fluid
+        header.row
+          .col-sm-2
+            img(src='images/logo/bee2.png', height='55px')
+          | &#x9;&#x9;
+          | &#x9;&#x9;&#x9;
+          .col-sm-8
+            nav
+              ul
+                li
+                  a(href='/home') Home
+                | &#x9;&#x9;&#x9;&#x9;&#x9;    
+                li
+                  a(href='#') Why Seasonal?
+          | &#x9;&#x9;&#x9;
+          .nav_section.col-sm-2
+            nav
+              ul
+                li
+                  a.btn.btn-primary(type='button', href='/') Use Produce Checker!
         | &#x9;&#x9;
-        | &#x9;&#x9;&#x9;
-        .col-sm-8
-          nav
+        main
+          .row.top_row
+            input#previous_btn(type='image', width='70px', src='images/arrows/arrowLeft.png')
+            | &#x9;&#x9;&#x9;&#x9;
+            input#next_btn(type='image', width='70px', src='images/arrows/arrowRight.png')
+            | &#x9;&#x9;&#x9;&#x9;
+            h2#month_name.col-sm-8 Month
+          | &#x9;&#x9;&#x9;
+          div
+            .row
+              #produce_display_1.col-sm-3.produce
+                img#produce_33.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_34.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_35.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_36.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_37.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_38.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_39.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_40.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_41.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_42.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_43.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_44.hidden(width='60px', src='#', alternative='Month Image')
+              | &#x9;&#x9;&#x9;&#x9;&#x9;
+              img#month_image.col-sm-6(width='30%', src='#', alternative='Month Image')
+              | &#x9;&#x9;&#x9;&#x9;&#x9;
+              #produce_display_2.col-sm-3.produce.right_produce
+                img#produce_45.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_46.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_47.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_48.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_49.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_50.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_51.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_52.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_53.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_54.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_55.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_56.hidden(width='60px', src='#', alternative='Month Image')
+            | &#x9;&#x9;&#x9;&#x9;
+            | &#x9;&#x9;&#x9;&#x9;&#x9;
+            .row
+              #produce_display_3.col-sm-12
+                img#produce_1.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_2.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_3.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_4.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_5.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_6.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_7.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_8.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_9.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_10.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_11.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_12.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_13.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_14.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_15.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_16.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_17.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_18.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_19.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_20.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_21.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_22.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_23.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_24.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_25.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_26.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_27.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_28.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_29.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_30.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_31.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_32.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_57.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_58.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_59.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_60.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_61.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_62.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_63.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_64.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_65.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_66.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_67.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_68.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_69.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_70.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_71.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_72.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_73.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_74.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_75.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_76.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_77.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_78.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_79.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_80.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_81.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_82.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_83.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_84.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_85.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_86.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_87.hidden(width='60px', src='#', alternative='Month Image')
+                | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
+                img#produce_88.hidden(width='60px', src='#', alternative='Month Image')
+      | &#x9;
+      footer.container-fluid
+        nav.row
+          .col-sm-12
             ul
               li
-                a(href='/home') Home
-              | &#x9;&#x9;&#x9;&#x9;&#x9;    
+                a(href='/produce_list') Produce List 
+              | &#x9;&#x9;&#x9;&#x9;    
               li
-                a(href='#') Why Seasonal?
-        | &#x9;&#x9;&#x9;
-        .nav_section.col-sm-2
-          nav
-            ul
-              li
-                a.btn.btn-primary(type='button', href='/') Use Produce Checker!
-      | &#x9;&#x9;
-      main
-        .row.top_row
-          input#previous_btn(type='image', width='70px', src='images/arrows/arrowLeft.png')
-          | &#x9;&#x9;&#x9;&#x9;
-          input#next_btn(type='image', width='70px', src='images/arrows/arrowRight.png')
-          | &#x9;&#x9;&#x9;&#x9;
-          h2#month_name.col-sm-8 Month
-        | &#x9;&#x9;&#x9;
-        div
-          .row
-            #produce_display_1.col-sm-3.produce
-              img#produce_33.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_34.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_35.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_36.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_37.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_38.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_39.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_40.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_41.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_42.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_43.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_44.hidden(width='60px', src='#', alternative='Month Image')
-            | &#x9;&#x9;&#x9;&#x9;&#x9;
-            img#month_image.col-sm-6(width='30%', src='#', alternative='Month Image')
-            | &#x9;&#x9;&#x9;&#x9;&#x9;
-            #produce_display_2.col-sm-3.produce.right_produce
-              img#produce_45.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_46.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_47.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_48.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_49.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_50.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_51.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_52.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_53.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_54.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_55.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_56.hidden(width='60px', src='#', alternative='Month Image')
-          | &#x9;&#x9;&#x9;&#x9;
-          | &#x9;&#x9;&#x9;&#x9;&#x9;
-          .row
-            #produce_display_3.col-sm-12
-              img#produce_1.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_2.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_3.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_4.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_5.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_6.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_7.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_8.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_9.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_10.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_11.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_12.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_13.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_14.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_15.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_16.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_17.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_18.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_19.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_20.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_21.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_22.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_23.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_24.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_25.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_26.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_27.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_28.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_29.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_30.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_31.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_32.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_57.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_58.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_59.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_60.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_61.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_62.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_63.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_64.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_65.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_66.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_67.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_68.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_69.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_70.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_71.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_72.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_73.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_74.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_75.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_76.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_77.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_78.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_79.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_80.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_81.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_82.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_83.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_84.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_85.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_86.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_87.hidden(width='60px', src='#', alternative='Month Image')
-              | &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;
-              img#produce_88.hidden(width='60px', src='#', alternative='Month Image')
-    | &#x9;
-    footer.container-fluid
-      nav.row
-        .col-sm-12
-          ul
-            li
-              a(href='/produce_list') Produce List 
-            | &#x9;&#x9;&#x9;&#x9;    
-            li
-              a(href='/produce_admin') Admin
-    // This 'modal' is implemented using the bootstrap framework and is referenced in scriptfile.js
-    #produce_modal.modal.fade(tabindex='-1')
-      .modal-dialog
-        .modal-content
-          .modal-body
-            h4#description
-            |           
-            img#fruit_image(src='#', width='100px')
-        // /.modal-content
-      // /.modal-dialog
-    // /.modal
-    script(type='text/javascript', src='jquery/jquery_v1.11.2.js')
-    script(type='text/javascript', src='bootstrap/js/bootstrap.min.js')
-    script(type='text/javascript', src='javascripts/scriptfile.js')
+                a(href='/produce_admin') Admin
+      // This 'modal' is implemented using the bootstrap framework and is referenced in scriptfile.js
+      #produce_modal.modal.fade(tabindex='-1')
+        .modal-dialog
+          .modal-content
+            .modal-body
+              h4#description
+              |           
+              img#fruit_image(src='#', width='100px')
+          // /.modal-content
+        // /.modal-dialog
+      // /.modal
