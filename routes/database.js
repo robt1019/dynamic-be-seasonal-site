@@ -18,14 +18,26 @@ router.get('/produce_list', function(req, res){
             console.log(err);
         }
         else{
-            console.log(produce);
             res.json(produce);
         }
     });
-    
-    // res.render('produce_list', {
-    //     title: "Produce List",  data:'nope'
-    // });
+
+});
+
+// GET months list page.
+router.get('/months_list', function(req, res){
+
+    var db = req.db;
+
+    db.all("SELECT id, name, produce_id FROM months", function(err, months){
+        if(err !== null){
+            console.log(err);
+        }
+        else{
+            res.json(months);
+        }
+    });
+
 });
 
 // Post to add produce service
@@ -43,6 +55,47 @@ router.post('/add_produce', function(req, res){
     statement.run(produceName, produceDescription, imageFile);
     statement.finalize();
 
+    // Return to produce list page after inserting item
+    res.location("produce_admin");
+    res.redirect("produce_admin");
+
+});
+
+// Post to add produce service
+router.post('/add_to_month', function(req, res){
+
+    var db = req.db;
+    var monthProduceArray = [];
+
+    // Get form values
+    var monthName = req.body.month_name;
+    var produceNames = req.body.produce_names;
+    monthProduceArray = produceNames.split(',');
+    console.log(monthProduceArray);
+
+    // Insert produce into months database by month
+    for (var i = 0; i < monthProduceArray.length; i++) {
+
+        var produceName = monthProduceArray[i];
+        console.log(produceName);
+        var statement, produceId;
+
+        db.all("SELECT id FROM produce WHERE name = ?", (produceName), function(err, produce_id){
+            // Check for error
+            if(err !== null){
+                console.log(err);
+            }
+            else{
+                // Get produce id from SELECT statement above
+                produceId = produce_id[0].id;
+                console.log(produceId);
+                // Insert into DB safely using prepare syntax
+                var statement = db.prepare("INSERT INTO  months(name, produce_id) VALUES (?, ?)");
+                statement.run(monthName, produceId);
+                statement.finalize();
+            }
+        });
+    };
     // Return to produce list page after inserting item
     res.location("produce_admin");
     res.redirect("produce_admin");

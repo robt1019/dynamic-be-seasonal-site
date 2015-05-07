@@ -11,3 +11,8 @@ body
         input(type="text", placeholder="description" name="description")
         input(type="text", placeholder="image filename" name="imageFile")
         input(type="submit", value="Add Item")
+
+    form(method="post", action="/add_to_month")
+        input(type="text", placeholder="month", name="month_name")
+        input(type="text", placeholder="produce_names", name="produce_names")
+        input(type="submit", value="Add Item")

@@ -40,8 +40,10 @@ db.serialize(function(){
     // create produce table if doesn't already exist
     db.run("pragma foreign_keys=ON")
     db.run("CREATE TABLE IF NOT EXISTS produce (id INTEGER PRIMARY KEY NOT NULL, name TEXT, description TEXT, image_url TEXT)");
-    db.run("CREATE TABLE IF NOT EXISTS january_produce (produce_id INT PRIMARY KEY, FOREIGN KEY (produce_id) REFERENCES produce(id))");
+    db.run("CREATE TABLE IF NOT EXISTS months (id INTEGER PRIMARY KEY NOT NULL, name TEXT, produce_id, FOREIGN KEY (produce_id) REFERENCES produce(id))");
     db.run("CREATE UNIQUE INDEX IF NOT EXISTS unique_produce ON produce(name)");
+    db.run("CREATE UNIQUE INDEX IF NOT EXISTS unique_produce ON months(name, produce_id)");
+
 });
 
 app.use('/', routes);

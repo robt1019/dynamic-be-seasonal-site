@@ -1,63 +1,20 @@
 "use strict";
 
-// produce array for use in site
-var produce_array = [];
-
-////////////////////////////// DOM ready ///////////////////////////////////////
+////////////////////////set up global arrays/variables//////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
-$(document).ready(function(){
-    populateProduceArray();
-})
+// produce array with all produce objects in database, stored in JSON
+var produceArray = [];
 
-///////////////////////////Produce Objects//////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-
-//fruit class/constructor
-var Fruit = function(name){
-	this.name = name;
-	this.image_address = "images/produce/" + name + ".png";
-	this.visible = false;
-	this.description = name + ": Produce Description...";
-}
-
-//all produce objects to be featured in website. Can be added to/edited easily
-var produce_array = ["apple", "apricot", "banana", "blackberry", "blackcurrants", 
-"bramleyApple", "cherry", "clementine", "cranberry", "damson", "date",
-"fig", "gooseberry", "grapefruit", "lemon", "nectarine", "orange", "peach",
-"pear", "plum", "pomegranate", "quince", "raspberry", "redcurrant", "rhubarb",	
-"strawberry", "tomato", "watermelon", "asparagus", "aubergine", "basil",
-"beetroot", "broccoli", "brusselsSprouts", "cabbage", "carrot", "cauliflower",
-"cavoloNero", "celeriac", "celery", "chicory", "courgette", "courgetteFlower",
-"fennelBulb", "garlic", "globeArtichoke", "jerusalemArtichoke", "kale", "kohlrabi",
-"lambsLettuce", "leek", "lettuce", "marrow", "newPotatoes", "pakChoi", "parsnip",
-"peas", "pepper", "potato", "pumpkin", "purpleSproutingBroccoli", "radicchio",
-"radish", "runnerBean", "salsify", "samphire", "spinach", "springGreens", "swede",
-"sweetPotato", "sweetCorn", "swissChard", "turnip", "watercress"];
-
-//create produce objects based on produce array
-create_produce_objects(produce_array);
-
-apple.description = "Apple: Available all year round";
-apricot.description = "Apricot: The British apricot season is from May to September";
-banana.description = "Banana: Available all year round";
-blackberry.description = "Blackberry: Available end of July through to mid October";
-blackcurrants.description = "Blackcurrants: At their peak in June and July. You can buy frozen blackcurrants year-round.";
-
-//remaining produce descriptions have not been included due to time constraints
-
-////////////////////////////////Month objects///////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-
-//month class/constructor
+// month object constructor
 var Month = function(name){
-	this.name = name;
-	this.image_address = "images/months/" + name +".png";
-	this.visible = false;
+    this.name = name;
+    this.image_address = "images/months/" + name +".png";
+    this.visible = false;
+    this.produce = [];
 }
 
-//months
-
+// Instantiate month objects
 var January = new Month("January");
 var February = new Month("February");
 var March = new Month("March");
@@ -71,81 +28,39 @@ var October = new Month("October");
 var November = new Month("November");
 var December = new Month("December");
 
-//set up individual monthly seasonal produce arrays
+//create array of month objects
+var months = [January, February, March, April, May,
+June, July, August, September, October, November, December];
 
-January.produce = [apple, banana, bramleyApple, watermelon, clementine, date,
-grapefruit, lemon, orange, pear, pomegranate, rhubarb, beetroot,
-brusselsSprouts, cabbage, cauliflower, celeriac, celery, chicory,
-jerusalemArtichoke, kale, leek, pakChoi, parsnip, radicchio, salsify,
-swede, sweetPotato, turnip];
+//populate produce image array in html document
+var produce_image_array = populate_array_incrementally("produce_", 20);
 
-February.produce = [apple, banana, bramleyApple, clementine, grapefruit,
-lemon, orange, pomegranate, rhubarb, brusselsSprouts, cabbage, cauliflower,
-celeriac, celery, chicory, jerusalemArtichoke, kale, leek, pakChoi, parsnip,
-purpleSproutingBroccoli, radicchio, swede, sweetPotato, turnip];
+//set initial month displayed
+var month_address = 3;
 
-March.produce = [banana, bramleyApple, grapefruit, lemon, orange,pomegranate, 
-rhubarb, brusselsSprouts, cabbage, cauliflower, celeriac, chicory, 
-jerusalemArtichoke, leek, pakChoi, parsnip, pepper, purpleSproutingBroccoli,
-radicchio, sweetPotato];
+//set current month element as current month
+var current_month = document.getElementById("month_image");
 
-April.produce = [banana, grapefruit, pomegranate, rhubarb, cabbage, cauliflower,
-celeriac, newPotatoes, pakChoi, pepper, potato, purpleSproutingBroccoli, radicchio,
-spinach, springGreens, watercress];
+//get current month name?
+var month_name = document.getElementById("month_name");
 
-May.produce = [apricot, banana, grapefruit, nectarine, pomegranate, rhubarb,
-cabbage, lambsLettuce, lettuce, newPotatoes, pakChoi, peas, pepper, potato,
-radicchio, radish, spinach, springGreens, watercress];
+var currentProduceImage = null;
 
-June.produce = [apricot, banana, blackcurrants, gooseberry,
-nectarine, pomegranate, rhubarb, strawberry, tomato, asparagus, aubergine,
-cabbage, carrot, courgette, courgetteFlower, fennelBulb, globeArtichoke, 
-lambsLettuce, lettuce, newPotatoes, pakChoi, peas, pepper, potato, radicchio,
-radish, runnerBean, spinach, springGreens, watercress];
+var description_image = document.getElementById("description_image");
 
-July.produce = [apricot, banana, blackcurrants, cherry, gooseberry,
-nectarine, pomegranate, raspberry, redcurrant, strawberry, tomato, 
-watermelon, asparagus, aubergine, basil, beetroot, cabbage, carrot,
-cavoloNero, courgette, courgetteFlower, fennelBulb, garlic, globeArtichoke,
-lambsLettuce, lettuce, newPotatoes, pakChoi, peas, pepper, potato,radicchio,
-radish, runnerBean, samphire, spinach, swissChard, watercress];
+////////////////////////////// DOM ready ///////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 
-August.produce = [apricot, banana, blackberry, fig, gooseberry,
-nectarine, peach, pomegranate, raspberry, redcurrant, strawberry,
-tomato, watermelon, aubergine, basil, beetroot, broccoli, cabbage, carrot,
-cavoloNero, celery, courgette, courgetteFlower, fennelBulb, garlic, globeArtichoke,
-kohlrabi, lambsLettuce, lettuce, marrow, pakChoi, peas, pepper, radicchio,
-radish, runnerBean, samphire, spinach, swissChard, watercress];
+$(document).ready(function(){
+    populateProduceArray();
+    populateMonthsProduce();
+})
 
-September.produce = [apple, apricot, banana, blackberry, damson,
-fig, gooseberry, nectarine, peach, pear, plum, pomegranate, raspberry,
-redcurrant, strawberry, tomato, aubergine, beetroot, broccoli, cabbage, carrot,
-cavoloNero, celeriac, celery, courgette, fennelBulb, garlic, globeArtichoke,
-kohlrabi, lambsLettuce, leek, lettuce, marrow, pakChoi, parsnip, peas, pepper,
-radicchio, radish, runnerBean, spinach, sweetCorn, swissChard, watercress];
-
-October.produce = [apple, banana, blackberry, cranberry, fig, pear,
-plum, pomegranate, quince, tomato, aubergine, beetroot, broccoli, brusselsSprouts,
-cabbage, cavoloNero, celeriac, celery, garlic, globeArtichoke, kale, kohlrabi,
-lambsLettuce, leek, lettuce, pakChoi, parsnip, peas, pepper, pumpkin, radicchio,
-radish, runnerBean, salsify, sweetPotato, swissChard, turnip];
-
-November.produce = [apple, banana, clementine, cranberry, date, pear,
-pomegranate, quince, beetroot, brusselsSprouts, cabbage, celeriac, celery,
-globeArtichoke, jerusalemArtichoke, kale, kohlrabi, lambsLettuce, leek, lettuce,
-pakChoi, parsnip, peas, pumpkin, radicchio, runnerBean, salsify, swede, sweetPotato,
-swissChard, turnip];
-
-December.produce = [apple, banana, bramleyApple, clementine, cranberry,
-date, grapefruit, pear, pomegranate, quince, beetroot, brusselsSprouts, cabbage,
-celeriac, celery, jerusalemArtichoke, kale, leek, lettuce, pakChoi, parsnip, pumpkin,
-radicchio, salsify, swede, sweetPotato, turnip];
-
-/////////////////////////////////functions//////////////////////////////////////
+/////////////////////////////////Functions//////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
 
 function populate_array_incrementally(string, size){
-	var array = new Array(produce_array.length);
+	var array = new Array(produceArray.length);
 	for(var i=0; i<size; i++){
 		array[i] = string + (i+1);
 	}
@@ -153,10 +68,10 @@ function populate_array_incrementally(string, size){
 }
 
 function set_current_month(){
-	current_month.innerHTML = month[month_address].name;
-	current_month.src = month[month_address].image_address;
-	current_month.alt = month[month_address].name + " image";
-	month_name.innerHTML = month[month_address].name;
+	current_month.value = months[month_address].name;
+	current_month.src = months[month_address].image_address;
+	current_month.alt = months[month_address].name + " image";
+	month_name.value = months[month_address].name;
 	display_produce(month_address);
 }
 
@@ -191,20 +106,48 @@ function removeClass(element, className) {
 // Fill produceArray with produce data from sql database
 function populateProduceArray(){
 
-    // Empty content string
-    var tableContent = '';
-
+    // Get list of produce as a JSON object by calling GET produce_list route
     $.getJSON('/produce_list', function(produce){
 
-        // For each item in our JSON, add a table row and cells to the content string
+        // For each item in the JSON, add it to the produce array
         $.each(produce, function(){
             produceArray.push(this);
         });
-
-        console.log(produceArray);
-
     });
 };
+
+// Populate each month's produce array field based on months table.
+function populateMonthsProduce(){
+
+    var monthName = null;
+    var produceId = null;
+    var produceObject = null;
+
+    $.getJSON('/months_list', function(row){
+
+        $.each(row, function(){
+            monthName = this.name;
+            produceId = this.produce_id;
+
+            for(var i=0; i<months.length; i++){
+                if(monthName == months[i].name){
+                    produceObject = getProduceObject(produceId);
+                    months[i].produce.push(produceObject);
+                }
+            }
+        });
+        // Set and display current month
+        set_current_month();    
+    });
+}
+
+function getProduceObject(produceId){
+    for(var i=0; i<produceArray.length; i++){
+        if(produceId == produceArray[i].id){
+            return produceArray[i];
+        }
+    }
+}
 
 function make_visible(element){
 
@@ -222,27 +165,29 @@ function make_invisible(element){
 
 
 function display_produce(month_address){
-	current_month.visible = true;
 
-	for (var i=0; i<month[month_address].produce.length; i++) {
-		current_produce_image = document.getElementById(produce_image_array[i]);
-		current_produce_image.src = month[month_address].produce[i].image_address;
-		current_produce_image.innerHTML = month[month_address].produce[i].description;
-		make_visible(current_produce_image);
+	current_month.visible = true;
+    var currentMonthProduce = months[month_address].produce;
+
+	for (var i=0; i<currentMonthProduce.length; i++) {
+		currentProduceImage = document.getElementById(produce_image_array[i]);
+		currentProduceImage.src ="images/produce/" + currentMonthProduce[i].image_url;
+		currentProduceImage.value = currentMonthProduce[i].description;
+		make_visible(currentProduceImage);
 	}
 }
 
 function make_produce_invisible(month_address){
-	for (var i=0; i<month[month_address].produce.length; i++) {
-		current_produce_image = document.getElementById(produce_image_array[i]);
-		current_produce_image.src = month[month_address].produce[i].image_address;
-		make_invisible(current_produce_image);
+	for (var i=0; i<months[month_address].produce.length; i++) {
+		currentProduceImage = document.getElementById(produce_image_array[i]);
+		currentProduceImage.src = months[month_address].produce[i].image_address;
+		make_invisible(currentProduceImage);
 	}
 }
 
 function create_produce_objects(){
-	for (var i = 0; i < produce_array.length; i++) {
-		var current_fruit = produce_array[i];
+	for (var i = 0; i < produceArray.length; i++) {
+		var current_fruit = produceArray[i];
 		window[current_fruit] = new Fruit(current_fruit);
 	}
 }
@@ -256,7 +201,7 @@ function update_previous_month(){
 		display_produce(month_address);
 		fadeOut(current_month);
 		set_current_month();
-		current_month.src = month[month_address].image_address;
+		current_month.src = months[month_address].image_address;
 		setTimeout(function(){
 			fadeIn(current_month);}, 300);
 	}
@@ -272,7 +217,7 @@ function update_next_month(){
 		display_produce(month_address);
 		fadeOut(current_month);
 		set_current_month();
-		current_month.src = month[month_address].image_address;
+		current_month.src = months[month_address].image_address;
 		setTimeout(function(){
 			fadeIn(current_month);}, 300);
 	}
@@ -281,7 +226,8 @@ function update_next_month(){
 function display_produce_description(index){
 
 	if(index.target !== index.currentTarget){
-		var description = index.target.innerHTML;
+		var description = index.target.value;
+        console.log(description);
 		var modal_content = document.getElementById("description");
 		var image = document.getElementById("fruit_image");
 
@@ -300,37 +246,6 @@ function fadeIn(element) {
         var opacity = 1;
         element.style.opacity = opacity;
     }
-
-
-///////////////////////////////set up arrays/variables//////////////////////////
-////////////////////////////////////////////////////////////////////////////////
-
-
-//create array of month objects
-var month = [January, February, March, April, May,
-June, July, August, September, October, November, December];
-
-//populate produce image array in html document
-var produce_image_array = populate_array_incrementally("produce_", produce_array.length);
-
-//set initial month displayed
-var month_address = 3;
-
-//set current month element as current month
-var current_month = document.getElementById("month_image");
-
-var month_name = document.getElementById("month_name");
-
-var current_produce_image = null;
-
-var description_image = document.getElementById("description_image");
-
-//Sets initial month up to display on website on load
-set_current_month();
-
-console.log("January:")
-console.log(January);
-
 
 ///////////////////////////event listeners//////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////
