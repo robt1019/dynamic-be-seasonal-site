@@ -5,13 +5,11 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-// sqlite3 code
+// sqlite3 code - new
 var fs = require('fs');
 var file = 'be_seasonal.db';
-// var exists = fs.existsSync(file);
 var sqlite3 = require('sqlite3').verbose();
 var db = new sqlite3.Database(file);
-// var produceArray = [];
 
 var routes = require('./routes/index');
 var database = require('./routes/database');
@@ -28,16 +26,15 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-// make produce array and db available to router
+// make produce array and db available to router - new
 app.use(function(req,res, next){
-    // req.produceArray = produceArray;
     req.db = db;
     next();
 });
 
+// set up database if not already done - new
 db.serialize(function(){
 
-    // create produce table if doesn't already exist
     db.run("pragma foreign_keys=ON")
     db.run("CREATE TABLE IF NOT EXISTS produce (id INTEGER PRIMARY KEY NOT NULL, name TEXT, description TEXT, image_url TEXT)");
     db.run("CREATE TABLE IF NOT EXISTS months (id INTEGER PRIMARY KEY NOT NULL, name TEXT, produce_id, FOREIGN KEY (produce_id) REFERENCES produce(id))");

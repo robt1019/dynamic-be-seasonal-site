@@ -1,18 +1,40 @@
-doctype html(xmlns='http://www.w3.org/1999/xhtml', lang='en-GB', xml:lang='en-GB')
-head
-    title Produce Manager
-    link(rel='stylesheet','type=text/css', href='stylesheets/theme.css')
-body
-    header
-        h1 Produce Manager
+extends layout
 
-    form(method="post", action="/add_produce")
-        input(type="text", placeholder="name", name="name")
-        input(type="text", placeholder="description" name="description")
-        input(type="text", placeholder="image filename" name="imageFile")
-        input(type="submit", value="Add Item")
+block content
 
-    form(method="post", action="/add_to_month")
-        input(type="text", placeholder="month", name="month_name")
-        input(type="text", placeholder="produce_names", name="produce_names")
-        input(type="submit", value="Add Item")
+    head
+        title Produce Manager
+        link(rel='stylesheet','type=text/css', href='stylesheets/theme.css')
+    body
+        header
+            h1 Produce Manager
+
+        form(method="post", action="/add_produce")
+            input(type="text", placeholder="Produce name", name="name")
+            input(type="text", placeholder="Description" name="description")
+            input(type="text", placeholder="Image filename" name="imageFile")
+            input(type="submit", value="Add Item")
+
+        form(method="post", action="/add_to_month")
+            input(type="text", placeholder="month", name="month_name")
+            input(type="text", placeholder="produce1,produce2...", name="produce_names")
+            input(type="submit", value="Add to Month")
+
+        form(method="post", action="/remove_produce")
+            input(type="text", placeholder="Produce Name", name="name")
+            input(type="submit", value="Remove Item")
+
+        form(method="post", action="/remove_month_produce")
+            input(type="text", placeholder="month", name="month_name")
+            input(type="text", placeholder="produce1,produce2...", name="produce_names")
+            input(type="submit", value="Remove from Month")
+
+        form(method="post", action="/edit_produce_description")
+            input(type="text", placeholder="produce name", name="produce_name")
+            input(type="text", placeholder="New description", name="new_description")
+            input(type="submit", value="Edit Produce Description")
+
+        form(method="post", action="/edit_produce_image")
+            input(type="text", placeholder="produce name", name="produce_name")
+            input(type="text", placeholder="New image filename", name="newImageFile")
+            input(type="submit", value="Edit Produce Image")

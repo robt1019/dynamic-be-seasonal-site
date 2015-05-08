@@ -71,7 +71,7 @@ function set_current_month(){
 	current_month.value = months[month_address].name;
 	current_month.src = months[month_address].image_address;
 	current_month.alt = months[month_address].name + " image";
-	month_name.value = months[month_address].name;
+	month_name.innerHTML = months[month_address].name;
 	display_produce(month_address);
 }
 
@@ -170,6 +170,7 @@ function display_produce(month_address){
     var currentMonthProduce = months[month_address].produce;
 
 	for (var i=0; i<currentMonthProduce.length; i++) {
+        console.log(currentProduceImage);
 		currentProduceImage = document.getElementById(produce_image_array[i]);
 		currentProduceImage.src ="images/produce/" + currentMonthProduce[i].image_url;
 		currentProduceImage.value = currentMonthProduce[i].description;
@@ -227,7 +228,6 @@ function display_produce_description(index){
 
 	if(index.target !== index.currentTarget){
 		var description = index.target.value;
-        console.log(description);
 		var modal_content = document.getElementById("description");
 		var image = document.getElementById("fruit_image");
 
