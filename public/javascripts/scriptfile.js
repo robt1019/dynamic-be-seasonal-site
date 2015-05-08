@@ -33,7 +33,7 @@ var months = [January, February, March, April, May,
 June, July, August, September, October, November, December];
 
 //populate produce image array in html document
-var produce_image_array = populate_array_incrementally("produce_", 20);
+var produceImageArray = null;
 
 //set initial month displayed
 var month_address = 3;
@@ -136,8 +136,10 @@ function populateMonthsProduce(){
                 }
             }
         });
+        // populate image array
+        produceImageArray = populate_array_incrementally("produce_", produceArray.length);
         // Set and display current month
-        set_current_month();    
+        set_current_month();
     });
 }
 
@@ -170,8 +172,9 @@ function display_produce(month_address){
     var currentMonthProduce = months[month_address].produce;
 
 	for (var i=0; i<currentMonthProduce.length; i++) {
-        console.log(currentProduceImage);
-		currentProduceImage = document.getElementById(produce_image_array[i]);
+		currentProduceImage = document.getElementById(produceImageArray[i]);
+        console.log(i);
+        console.log(currentProduceImage.id);
 		currentProduceImage.src ="images/produce/" + currentMonthProduce[i].image_url;
 		currentProduceImage.value = currentMonthProduce[i].description;
 		make_visible(currentProduceImage);
@@ -180,7 +183,7 @@ function display_produce(month_address){
 
 function make_produce_invisible(month_address){
 	for (var i=0; i<months[month_address].produce.length; i++) {
-		currentProduceImage = document.getElementById(produce_image_array[i]);
+		currentProduceImage = document.getElementById(produceImageArray[i]);
 		currentProduceImage.src = months[month_address].produce[i].image_address;
 		make_invisible(currentProduceImage);
 	}
