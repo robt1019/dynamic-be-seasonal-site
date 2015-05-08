@@ -169,8 +169,8 @@ router.post('/remove_month_produce', function(req, res){
                 produceId = produce_id[0].id;
                 console.log(produceId);
                 // Insert into DB safely using prepare syntax
-                var statement = db.prepare("DELETE FROM months WHERE produce_id = ?");
-                statement.run(produceId);
+                var statement = db.prepare("DELETE FROM months WHERE produce_id = ? AND name = ?");
+                statement.run(produceId, monthName);
                 statement.finalize();
             }
         });
