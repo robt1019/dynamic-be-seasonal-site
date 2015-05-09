@@ -9,7 +9,7 @@ var produceArray = [];
 // month object constructor
 var Month = function(name){
     this.name = name;
-    this.image_address = "images/months/" + name +".png";
+    this.imageAddress = "images/months/" + name +".png";
     this.visible = false;
     this.produce = [];
 }
@@ -36,13 +36,13 @@ June, July, August, September, October, November, December];
 var produceImageArray = null;
 
 //set initial month displayed
-var month_address = 3;
+var monthAddress = 3;
 
 //set current month element as current month
-var current_month = document.getElementById("month_image");
+var currentMonth = document.getElementById("month_image");
 
 //get current month name?
-var month_name = document.getElementById("month_name");
+var monthName = document.getElementById("month_name");
 
 var currentProduceImage = null;
 
@@ -67,12 +67,12 @@ function populate_array_incrementally(string, size){
 	return array;
 }
 
-function set_current_month(){
-	current_month.value = months[month_address].name;
-	current_month.src = months[month_address].image_address;
-	current_month.alt = months[month_address].name + " image";
-	month_name.innerHTML = months[month_address].name;
-	display_produce(month_address);
+function setCurrentMonth(){
+	currentMonth.value = months[monthAddress].name;
+	currentMonth.src = months[monthAddress].imageAddress;
+	currentMonth.alt = months[monthAddress].name + " image";
+	monthName.innerHTML = months[monthAddress].name;
+	displayProduce(monthAddress);
 }
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -139,7 +139,7 @@ function populateMonthsProduce(){
         // populate image array
         produceImageArray = populate_array_incrementally("produce_", produceArray.length);
         // Set and display current month
-        set_current_month();
+        setCurrentMonth();
     });
 }
 
@@ -151,90 +151,88 @@ function getProduceObject(produceId){
     }
 }
 
-function make_visible(element){
+function makeVisible(element){
 
-	var current_class_value = element.className;
+	var currentClassValue = element.className;
 
 	if(hasClass(element, "hidden")){
 		removeClass(element, "hidden");
 	}
 }
 
-function make_invisible(element){
+function makeInvisible(element){
 	addClass(element, "hidden");
-	current_month.visible = false;		
+	currentMonth.visible = false;		
 }
 
 
-function display_produce(month_address){
+function displayProduce(monthAddress){
 
-	current_month.visible = true;
-    var currentMonthProduce = months[month_address].produce;
+	currentMonth.visible = true;
+    var currentMonthProduce = months[monthAddress].produce;
 
-	for (var i=0; i<currentMonthProduce.length; i++) {
+	for (var i=0; i<currentMonthProduce.length-1; i++) {
 		currentProduceImage = document.getElementById(produceImageArray[i]);
-        console.log(i);
-        console.log(currentProduceImage.id);
-		currentProduceImage.src ="images/produce/" + currentMonthProduce[i].image_url;
+		currentProduceImage.src = "images/produce/" + currentMonthProduce[i].image_url;
+        currentProduceImage.name = currentMonthProduce[i].name;
 		currentProduceImage.value = currentMonthProduce[i].description;
-		make_visible(currentProduceImage);
+		makeVisible(currentProduceImage);
 	}
 }
 
-function make_produce_invisible(month_address){
-	for (var i=0; i<months[month_address].produce.length; i++) {
+function makeProduceInvisible(monthAddress){
+	for (var i=0; i<months[monthAddress].produce.length; i++) {
 		currentProduceImage = document.getElementById(produceImageArray[i]);
-		currentProduceImage.src = months[month_address].produce[i].image_address;
-		make_invisible(currentProduceImage);
+		makeInvisible(currentProduceImage);
 	}
 }
 
-function create_produce_objects(){
+function createProduceObjects(){
 	for (var i = 0; i < produceArray.length; i++) {
 		var current_fruit = produceArray[i];
 		window[current_fruit] = new Fruit(current_fruit);
 	}
 }
 
-function update_previous_month(){
-	if(month_address > 0){
-		if(current_month.visible === true){
-			make_produce_invisible(month_address);
+function updatePreviousMonth(){
+	if(monthAddress > 0){
+		if(currentMonth.visible === true){
+			makeProduceInvisible(monthAddress);
 		}
-		month_address--;
-		display_produce(month_address);
-		fadeOut(current_month);
-		set_current_month();
-		current_month.src = months[month_address].image_address;
+		monthAddress--;
+		fadeOut(currentMonth);
+		setCurrentMonth();
+		currentMonth.src = months[monthAddress].imageAddress;
 		setTimeout(function(){
-			fadeIn(current_month);}, 300);
+			fadeIn(currentMonth);}, 300);
 	}
 }
 
 
-function update_next_month(){
-	if(month_address < 11){
-		if(current_month.visible === true){
-			make_produce_invisible(month_address);
+function updateNextMonth(){
+	if(monthAddress < 11){
+		if(currentMonth.visible === true){
+			makeProduceInvisible(monthAddress);
 		}
-		month_address++;
-		display_produce(month_address);
-		fadeOut(current_month);
-		set_current_month();
-		current_month.src = months[month_address].image_address;
+		monthAddress++;
+		fadeOut(currentMonth);
+		setCurrentMonth();
+		currentMonth.src = months[monthAddress].imageAddress;
 		setTimeout(function(){
-			fadeIn(current_month);}, 300);
+			fadeIn(currentMonth);}, 300);
 	}
 }
 
-function display_produce_description(index){
+function displayproduceDescription(index){
 
 	if(index.target !== index.currentTarget){
 		var description = index.target.value;
-		var modal_content = document.getElementById("description");
+		var modalContent = document.getElementById("description");
+        var modalHeader = document.getElementById("modal_name")
 		var image = document.getElementById("fruit_image");
 
-        modal_content.innerHTML = description;
+        modalContent.innerHTML = description;
+        modalHeader.innerHTML = index.target.name;
         image.src = index.target.src;
         $('#produce_modal').modal('show');
 	}
@@ -254,14 +252,14 @@ function fadeIn(element) {
 ////////////////////////////////////////////////////////////////////////////////
 
 //Previous button click
-document.getElementById("previous_btn").addEventListener("click", update_previous_month, false);
+document.getElementById("previous_btn").addEventListener("click", updatePreviousMonth, false);
 
 //Next button click
-document.getElementById("next_btn").addEventListener("click", update_next_month, false);
+document.getElementById("next_btn").addEventListener("click", updateNextMonth, false);
 
 //Produce images click
-document.getElementById("produce_display_1").addEventListener("click", display_produce_description, false);
-document.getElementById("produce_display_2").addEventListener("click", display_produce_description, false);
-document.getElementById("produce_display_3").addEventListener("click", display_produce_description, false);
+document.getElementById("produce_display_1").addEventListener("click", displayproduceDescription, false);
+document.getElementById("produce_display_2").addEventListener("click", displayproduceDescription, false);
+document.getElementById("produce_display_3").addEventListener("click", displayproduceDescription, false);
 
 

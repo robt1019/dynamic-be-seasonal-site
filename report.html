@@ -14,11 +14,9 @@
 
 			<p>To run the server and load the site, enter the following command from within the project folder 'nodemon bin/www' and point your browser to 'http://localhost:3000'.</p>
 
-			<p>'nodemon' means that the server doesn't have to be restarted if changes are made to project files</p>
-
 			<p>The site will load the produce checker page first, and navigating to previous or next months will display new produce specific to that month. Clicking on an item of produce will display information about the item in a pop up box. New pages that weren't present on the original client site are 'Produce List', 'Months' and 'Admin'.</p>
 
-			<p>'Admin' allows the adding, removal and editing of produce items into both the produce table, and the months table, for use by the site. 'Produce List' and 'Months' display the items currently stored in the produce and the months database. Currently anyone can access these pages which is not ideal. Given more time I would have looked to implement user accounts and privileged log-ins for these pages.</p>
+			<p>'Admin' allows the adding, removal and editing of produce items into both the produce table, and the months table, for use by the site. 'Produce List' and 'Months' display the items currently stored in the produce and the months database. 'Produce List' and 'Months' display all data in a JSON format at the moment which is ugly, but ok from an admin point of view. Given more time I'd have looked to improve this. Currently anyone can access all admin pages which is not ideal. With more time I would have looked to implement user accounts and privileged log-ins for these pages.</p>
 
 	<h3>Configuration or programming of a server</h3>
 		
@@ -28,9 +26,9 @@
 
 			<a href="cwbuecheler.com/web/tutorials/2013/node-express-mongo/">Tutorial 1</a>
 
-			<a href="http://cwbuecheler.com/web/tutorials/2014/restful-web-app-node-express-mongodb/">Tutorial 1</a>
+			<a href="http://cwbuecheler.com/web/tutorials/2014/restful-web-app-node-express-mongodb/">Tutorial 2</a>
 
-			<a href="https://www.youtube.com/watch?v=BN0JlMZCtNU">Tutorial 2</a>
+			<a href="https://www.youtube.com/watch?v=BN0JlMZCtNU">Tutorial 3</a>
 
 			<p>Express builds a basic scaffolding for a dynamic site, consisting of a main 'app.js' file, as well as folders for 'routes' (code related to routing), 'views' (code related to what is displayed on the screen) and 'node_modules'(additional modules installed via the node package manager, 'npm').</p>
 
@@ -60,20 +58,30 @@
 
 			<p>The be_seasonal.db database consists of two tables. 'produce' stores a unique id, name, description, and image file for all produce items. 'months' stores a unique id, month name, and a foreign key reference to a produce item.</p>
 
+			<p>The schema for this is shown below</p>
+
+			<img src="database-schema.png"></img>
+
 
 		<h4>Security</h4>
 
-			<p>Security is very basic, and needs a lot of work. SQL injections are protected against, but currently anyone can use the admin page, as user accounts and log-ins have not been implemented. The site only runs on 'http://localhost:3000' at the moment</p>
+			<p>Security is very basic, and needs a lot of work. SQL injections are protected against, as there is no user input that doesn't come through the admin page. Although as currently anyone can use the admin page, as user accounts and log-ins have not been implemented, the site is still very vulnerable.</p>
+
+			<p>Security is the weakest area of the site. As well as the issues mentioned above, currently if an interacction with the admin page results in a SQL error, the server crashes. Again this is far from ideal and given more time I'd have looked to improve this.</p>
 
 		<h4>Integration with existing code</h4>
 
-			<p>The Be-Seasonal client site relied heavily on a javascript for displaying and manipulating information about produce items. As the site is basically designed to perform only one function (displaying seasonal produce by month), I decided the most useful functionality for making the site dynamic would be the ability to store and amend produce data by month in a database, and have the exisiting javascript interact with this database.</p>
+			<p>The Be-Seasonal client site relied heavily on a javascript file for displaying and manipulating information about produce items. As the site is basically designed to perform only one function (displaying seasonal produce by month), I decided the most useful functionality for making the site dynamic would be the ability to store and amend produce data by month in a database, and have the exisiting javascript interact with this database.</p>
 
 			<p>To achieve this, limited JQuery was used to make calls to relevant routing code in the routes folder from within the client javascript file 'scriptfile.	js', saved in the 'public/javascripts' folder.</p>
 
-			<p>This allowed the 'scriptfile.js' file to retrieve produce and month information from the be-seasonal.db database, and perform event-driven operations based on this information.</p>
+			<p>This allows the 'scriptfile.js' file to retrieve produce and month information from the be-seasonal.db database, and perform event-driven operations based on this information.</p>
+
+			<p>This also involved some quite complex troubleshooting, and took a fairly long time. Finding bugs was hard due to the number of interacting files and technologies. Bugs appeared in the database code, within the Express server code, Jade code, client-side javascript code, and offered differing levels and quality of error message.</p>
 
 			<p>Month images and objects are not stored in the database, but produce items (fruit and veg), as well as information on what produce is available by month are. This makes it far simpler to update and maintain the website</p>
+
+			<p>This is probably the area of the site I'm happiest with.</p>
 	
 	</body>
 </html>

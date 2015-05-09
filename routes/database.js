@@ -13,7 +13,6 @@ router.get('/produce_admin', function(req, res, next) {
 
 // GET produce list page.
 router.get('/produce_list', function(req, res){
-
     var db = req.db;
 
     db.all("SELECT id, name, description, image_url FROM produce", function(err, produce){
@@ -29,7 +28,6 @@ router.get('/produce_list', function(req, res){
 
 // GET months list page.
 router.get('/months_list', function(req, res){
-
     var db = req.db;
 
     db.all("SELECT id, name, produce_id FROM months", function(err, months){
@@ -66,6 +64,7 @@ router.post('/add_produce', function(req, res){
 
 // Post to remove produce service
 router.post('/remove_produce', function(req, res){
+
     var db = req.db;
 
     // Get form values from produce admin page
@@ -117,7 +116,6 @@ router.post('/add_to_month', function(req, res){
     for (var i = 0; i < monthProduceArray.length; i++) {
 
         var produceName = monthProduceArray[i];
-        console.log(produceName);
         var statement, produceId;
 
         db.all("SELECT id FROM produce WHERE name = ?", (produceName), function(err, produce_id){
@@ -128,7 +126,6 @@ router.post('/add_to_month', function(req, res){
             else{
                 // Get produce id from SELECT statement above
                 produceId = produce_id[0].id;
-                console.log(produceId);
                 // Insert into DB safely using prepare syntax
                 var statement = db.prepare("INSERT INTO  months(name, produce_id) VALUES (?, ?)");
                 statement.run(monthName, produceId);
@@ -156,7 +153,6 @@ router.post('/remove_month_produce', function(req, res){
     for (var i = 0; i < produceRemoveArray.length; i++) {
 
         var produceName = produceRemoveArray[i];
-        console.log(produceName);
         var statement, produceId;
 
         db.all("SELECT id FROM produce WHERE name = ?", (produceName), function(err, produce_id){
@@ -167,7 +163,6 @@ router.post('/remove_month_produce', function(req, res){
             else{
                 // Get produce id from SELECT statement above
                 produceId = produce_id[0].id;
-                console.log(produceId);
                 // Insert into DB safely using prepare syntax
                 var statement = db.prepare("DELETE FROM months WHERE produce_id = ? AND name = ?");
                 statement.run(produceId, monthName);
